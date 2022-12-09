@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Devices</title>
+  </head>
+  <body class="bg-teal-700">
+    <div class="flex-container">
+    <div class="h-screen flex flex-col" style="flex-grow: 8">
+    <div class="tableFixHead">
+    <table class="styled-table" id="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    </div>
+    </div>
+     <!-- Form -->
+     <div style="flex-grow: 1">
+     <form action="/device" id="device-form" >
+      <div class="mt-6">
+        <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Device</label>
+        <input
+          type="text"
+          name="device-name"
+          id="device-name"
+          class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+          placeholder="Device Name"
+          autofocus
+        />
+      </div>
+      <!-- Button -->
+      <div class="mt-6">
+        <button
+          id="btn-action"
+          type="submit"
+          class="w-80 m-auto flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          Insert
+        </button>
+
+    </form>
+  </div>
+</div>
+
+
+<script>
+  if (typeof module === "object") {
+    window.module = module;
+    module = undefined;
+  }
+</script>
+
+<!-- normal script imports etc  -->
+
+<script src="./plugins/jquery.min.js"></script>
+<!-- <script src="./js/bootstrap.bundle.min.js"></script> -->
+<script src="./js/popper.min.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script src="./plugins/jquery.dataTables.min.js"></script>
+<script src="./js/dataTables.bootstrap.min.js"></script>
+<script src="./js/dataTables.responsive.min.js"></script>
+<script src="./js/responsive.bootstrap.min.js"></script>
+<script src="./js/bootstrap-select.min.js"></script>
+
+<script src="./js/device.js"></script>
+
+
+<!-- Insert this line after script imports -->
+<script>
+  if (window.module) module = window.module;
+</script>
+  </body>
+</html>

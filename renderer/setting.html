@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="./plugins/jquery.js"></script>
+    <script src="js/script.js" defer></script>
+    <title>Main</title>
+  </head>
+  <body class="bg-teal-700">
+    <!-- Grey with black text -->
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="./index.html">Home</a>
+      </li>
+     <li class="nav-item">
+        <a class="nav-link" href="#">Settings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <div class="flex-container">
+      <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+          <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+          <a href="#about">About</a>
+          <a href="#base">Base</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+          <a href="#custom">Custom</a>
+          <a href="#support">Support</a>
+          <a href="#tools">Tools</a>
+        </div>
+      </div>
+    <div class="h-screen flex flex-col" style="flex-grow: 8">
+   <!-- Form -->
+   <div style="flex-grow: 1">
+    <form id="receipt-form" >
+     <div class="mt-6">
+       <label class="mt-1 block text-white text-left w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Customer</label>
+       <input
+         type="text"
+         name="customer"
+         id="customer"
+         class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+         placeholder="Customer"
+         required
+         autofocus
+       />
+       <label class="mt-1 block text-white text-left w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Phone Number</label>
+       <input
+         type="tel"
+         name="phone"
+         id="phone"
+         class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+         placeholder="Phone Number"
+         required
+       />
+       <label class="mt-1 block text-white text-left w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Device</label>
+       <input
+         type="text"
+         name="device-name"
+         id="device-name"
+         class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+         placeholder="Device Name"
+         required
+       />
+       <label class="mt-1 block text-white text-left w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Subject</label>
+       <input
+         type="text"
+         name="subject"
+         id="subject"
+         class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+         placeholder="Subject"
+         required
+       />
+       <label class="mt-1 block text-white text-left w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">PrePayment</label>
+       <input
+         type="number"
+         name="prePayment"
+         id="prePayment"
+         class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+         placeholder="PrePayment"
+         required
+       />
+       <label class="mt-1 block text-white text-left w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Cost</label>
+       <input
+        type="number"
+         name="cost"
+         id="cost"
+         class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+         placeholder="Cost"
+         required
+       />
+       <label class="mt-1 block text-white text-left w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Fee</label>
+       <input
+        type="number"
+         name="fee"
+         id="fee"
+         class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+         placeholder="Fee"
+         required
+       />
+       <label class="mt-1 block text-white text-left w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Remining Cost</label>
+       <input
+        type="number"
+         name="reminingCost"
+         id="reminingCost"
+         class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+         placeholder="Remining Cost"
+         required
+       />
+       <label class="mt-1 block text-white text-left w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Description</label>
+       <textarea 
+        id="description" 
+        rows="5" 
+        cols="60" 
+        name="text" 
+        class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+        placeholder="Description"></textarea>
+     </div>
+     <!-- Button -->
+     <div class="mt-6">
+       <button
+         type="submit"
+         class="w-80 m-auto flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+         Save
+       </button>
+       </div>
+       
+   </form>
+   <br><br>
+   <button id="current"
+   class="w-80 m-auto flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+  print
+  </button>
+  <br><br>
+  <button id="next-page"
+  class="w-80 m-auto flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+ Next
+ </button>
+ </div>
+  </div>
+  </body>
+
+</html>
