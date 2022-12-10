@@ -2,6 +2,10 @@ const path = require("path");
 const fs = require("fs");
 const { app, BrowserWindow, Menu, ipcMain, webContents } = require("electron");
 
+require("@electron/remote/main").initialize();
+const mainRemote = require("@electron/remote/main");
+
+
 const isDev = process.env.NODE_ENV !== "production";
 
 const isMac = process.platform === "darwin";
@@ -37,6 +41,8 @@ function createMainWindow() {
   mainWindow.loadFile(path.join(__dirname, "./renderer/index.html"));
 
   mainWindow.once("ready-to-show", mainWindow.show);
+
+  mainRemote.enable(mainWindow.webContents);
 }
 
 function createAboutWindow() {

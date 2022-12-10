@@ -51,7 +51,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -6771,6 +6771,26 @@ button.bg-dark:focus {
 .px-5 {
   padding-left: 3rem !important; }
 
+
+  .p-6 {
+    padding: 4.8rem !important; }
+  
+  .pt-6,
+  .py-6 {
+    padding-top: 4.8rem !important; }
+  
+  .pr-6,
+  .px-6 {
+    padding-right: 4.8rem !important; }
+  
+  .pb-6,
+  .py-6 {
+    padding-bottom: 4.8rem !important; }
+  
+  .pl-6,
+  .px-6 {
+    padding-left: 4.8rem !important; }
+
 .m-n1 {
   margin: -0.25rem !important; }
 
@@ -8596,6 +8616,16 @@ video {
   border-color: transparent;
 }
 
+.bg-purple {
+  --tw-bg-opacity: 1;
+  background-color: #9294C7;
+}
+
+.bg-dark-purple {
+  --tw-bg-opacity: 1;
+  background-color: #494CA2;
+}
+
 .bg-teal-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(15 118 110 / var(--tw-bg-opacity));
@@ -8715,6 +8745,11 @@ video {
   background-color: rgb(19 78 74 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-purple-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(146 148 199 / var(--tw-bg-opacity));
+}
+
 .hover\:text-teal-800:hover {
   --tw-text-opacity: 1;
   color: rgb(17 94 89 / var(--tw-text-opacity));
@@ -8821,3 +8856,35 @@ div.dataTables_wrapper div.dataTables_filter input {
   margin: 0;
 }
 
+div.dataTables_wrapper div.dataTables_button {
+  width: 100%;
+  margin: 50px;
+}
+
+div.dataTables_length {
+  margin-right: 1em;
+}
+
+/* Style buttons */
+/* .btn {
+  background-color: DodgerBlue;
+  border: none; 
+  color: white; 
+  font-size: 16px; 
+  cursor: pointer; 
+} */
+
+
+/* Darker background on mouse-over */
+/* .btn:hover {
+  background-color: RoyalBlue;
+} */
+
+
+.bt-ml-1 {
+  margin-left: 0.3em;
+}
+
+.bt-mr-1 {
+  margin-right: 0.3em;
+}
