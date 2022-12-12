@@ -1,4 +1,6 @@
 const Receipt = require('../model/Receipt')
+const moment = require('moment-jalaali')
+const {digitsEnToFa,addCommas} = require('@persian-tools/persian-tools')
 
 module.exports.onAddNewReceipt = async (e, args) => {
   try {
@@ -14,8 +16,17 @@ module.exports.onAddNewReceipt = async (e, args) => {
 
 module.exports.onGetReceipts = async (e, args) => {
     try {
-        const receipts = await Receipt.find()
-        e.reply('get-receipts',JSON.stringify(receipts))
+        let receipts = await Receipt.find({}).sort({"createdAt":-1}).lean()
+        let final = receipts.map(obj => {
+            return {...obj,
+                cost:digitsEnToFa(addCommas(obj.cost)),
+                remainingPayment:digitsEnToFa(addCommas(obj.remainingPayment)),
+                prePayment:digitsEnToFa(addCommas(obj.prePayment)),
+                fee:digitsEnToFa(addCommas(obj.fee)),
+                customerPhone:digitsEnToFa(obj.customerPhone),
+                createdAt:new Intl.DateTimeFormat('fa-IR').format(obj.createdAt)}
+        });
+        e.reply('get-receipts',JSON.stringify(final))
         
     } catch (error) {
         e.reply('error',error.message)
@@ -34,9 +45,10 @@ module.exports.onDeleteReceipt = async (e, _id) => {
 
 module.exports.onUpdateReceipt = async (e, args) => {
     try {
-        const updatedReceipt = await Receipt.findByIdAndUpdate(args.idReceiptToUpdate,
+        let updatedReceipt = await Receipt.findByIdAndUpdate(args.idReceiptToUpdate,
             {
                 customerName: args.customerName,
+                customerPhone: args.customerPhone,
                 device: args.device,
                 subject: args.subject,
                 cost: args.cost,
@@ -46,6 +58,7 @@ module.exports.onUpdateReceipt = async (e, args) => {
                 description: args.description
             },
             {new: true})
+            
         e.reply("update-receipt-success",JSON.stringify(updatedReceipt))
         
     } catch (error) {

@@ -8888,3 +8888,28 @@ div.dataTables_length {
 .bt-mr-1 {
   margin-right: 0.3em;
 }
+
+tfoot input {
+  width: 100%;
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+.input-wrapper{
+  display: flex;
+  background-color: #ffffff;
+  border: 1px solid #7b7b93;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+.prefix,
+.suffix{
+  position: relative;
+  color: #7b7b93;
+}
+.prefix{
+  padding: 15px 0 15px 15px;
+}
+.suffix{
+  padding: 15px 15px 15px 0;
+}

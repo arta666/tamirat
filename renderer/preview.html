@@ -2,29 +2,35 @@
 <html dir="rtl" lang="pr">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link href="./css/bootstrap.css" rel="stylesheet">
-    <script src="./plugins/jquery.js"></script>
-    <script src="./js/preview.js" defer></script>
-    <script src="./js/bootstrap.js"></script>
+    <link href="./css/bootstrap.css" rel="stylesheet" />
     <title>Printer</title>
     <style>
-      /* body {
-        font-family: sans-serif !important;
-      }
-      @page {
-        margin: 0;
-        width: 30mm;
-        height: 15mm;
-      }
-      .a {
-        padding-left: 100px;
-      }
-      h1 {
-        text-align: center;
+      /* hr {
+        width: 80%;
+        height: 8px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #666;
+        border: 0 none;
+        margin-top: 100px;
+        margin-bottom: 100px;
       } */
+      .card {
+        width: 100%;
+      }
+      .striped-border {
+        border: 1px dashed #000;
+        width: 100%;
+        margin: auto;
+        margin-top: 1%;
+        margin-bottom: 1%;
+      }
       .alignleft {
         float: left;
       }
@@ -34,67 +40,88 @@
     </style>
   </head>
   <body>
-    <h3 id="title" style="text-align: center">تعمیرات جلال بابا حبیب</h3>
+    <h3 id="title" style="text-align: center">baba</h3>
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
-    <div style="clear: both">
-        <label class="alignleft">تاریخ : ۱۴۳۱۲۳۱۲۳۰۱</label>
-        <label class="alignright">شماره فیش : ۱۲۳۱۲۳۱۲</label>
-      </div>
-    </div>
+      <div class="card">
+        <div class="card-body">
+          <div style="clear: both">
+            <label id="date" class="alignleft">تاریخ</label>
+            <label id="receiptNumber" class="alignright">شماره فیش </label>
+          </div>
+        </div>
       </div>
       <div class="card">
         <div class="card-body">
-          <div class="row">
-            <label class="col">شماره تماس : ۰۹۱۲۸۷۸۳۷۴۷</label>
-            <label class="col">جناب آقای / خانم : باباحبیب</label>
+          <div class="row pt-1">
+            <label id="customerName" class="col">جناب آقای / خانم : </label>
+            <label id="customerPhone" class="col">شماره تماس : </label>
+            
           </div>
 
-          <div class="row">
-            <label class="col">دستگاه : سونیا ۴۲</label>
-            <label class="col"> عیب : عدم صوت</label>
+          <div class="row pt-1">
+            <label id="device" class="col">دستگاه :</label>
+            <label id="subject" class="col"> عیب : </label>
           </div>
-          <div class="row">
-            <label class="col"> مانده حساب : ۲۰۰۰۰۰ ریال</label>
-            <label class="col"> پیش پرداخت : ۱۰۰۰۰ ریال</label>
+          <div class="row pt-1">
+            <label id="prePayment" class="col"> پیش پرداخت : ریال</label>
+            <label id="remainingPayment" class="col"> مانده حساب : ریال</label>
+            
           </div>
-          <div class="row">
-            <label class="col">دستمزد شرکتی : ۱۰۰۰۰۰ ریال</label>
+          <div class="row pt-1">
+            <label id="fee" class="col">دستمزد شرکتی : ریال</label>
           </div>
         </div>
-          </div>
-          <!-- Customer Receipt-->
-          <h3 style="text-align: center">تعمیرات جلال بابا حبیب</h3>
-    <div class="container-default">
+      </div>
+      <!-- Customer Receipt-->
+      <h3 id="c-title" class="pt-3" style="text-align: center">تعمیرات جلال بابا حبیب</h3>
+      <div class="container-default pt-2">
         <div class="card">
-            <div class="card-body">
-    <div style="clear: both">
-        <label class="alignleft">تاریخ : ۱۴۳۱۲۳۱۲۳۰۱</label>
-        <label class="alignright">شماره فیش : ۱۲۳۱۲۳۱۲</label>
-      </div>
-    </div>
-      </div>
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <label class="col">شماره تماس : ۰۹۱۲۸۷۸۳۷۴۷</label>
-                <label class="col">جناب آقای / خانم : باباحبیب</label>
-              </div>
-    
-              <div class="row">
-                <label class="col">دستگاه : سونیا ۴۲</label>
-                <label class="col"> عیب : عدم صوت</label>
-              </div>
-              <div class="row">
-                <label class="col"> مانده حساب : ۲۰۰۰۰۰ ریال</label>
-                <label class="col"> پیش پرداخت : ۱۰۰۰۰ ریال</label>
-              </div>
+          <div class="card-body">
+            <div style="clear: both">
+              <label id="c-date" class="alignleft">تاریخ : </label>
+              <label id="c-receiptNumber" class="alignright">شماره فیش :
+              </label>
             </div>
-              </div>
-    </div>
-    <!-- jQuery library -->
-<!-- Latest compiled JavaScript -->
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="row pt-1">
+              <label id="c-customerName" class="col">جناب آقای / خانم : </label>
+              <label id="c-device" class="col">دستگاه :</label>
+            </div>
 
+            <div class="row pt-1">
+              <label id="c-subject" class="col"> عیب : </label>
+              <label id="c-prePayment" class="col"> پیش پرداخت : ریال</label>
+            
+            </div>
+            <div class="row pt-1">
+              <label id="c-remainingPayment" class="col">
+                مانده حساب : ریال</label>
+              <label id="c-cost" class="col">هزینه</label>
+            </div>
+          </div>
+        </div>
+        <h6 id="c-footer" class="pt-2" style="text-align: right">توضیحات</h6>
+        <hr class="striped-border" />
+        <h6 id="c-address" class="pt-1" style="text-align: right"> آدرس</h6>
+      </div>
+    </div>
+
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+
+    <script src="./plugins/jquery.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/preview.js"></script>
+    <script>
+      if (window.module) module = window.module;
+    </script>
   </body>
 </html>

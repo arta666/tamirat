@@ -12,7 +12,7 @@ const receiptSchema = new Schema({
         required: true,
     },
     customerPhone:{
-        type:Number,
+        type:String,
         required: true,
     },
     device: String,

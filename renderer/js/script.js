@@ -1,5 +1,8 @@
 const { ipcRenderer, BrowserWindow } = require("electron");
 const {dialog} = require('@electron/remote');
+const {digitsFaToEn,digitsEnToFa, numberToWords, removeCommas, addCommas} = require('@persian-tools/persian-tools')
+const Store = require('electron-store');
+const store = new Store();
 
 // const $ = require('jquery')
 const toastify = require("toastify-js");
@@ -31,6 +34,30 @@ $(function () {
   ipcRenderer.send("get-receipts");
   getDevices();
   getSubjects();
+
+  $('#prePayment').on('input', function() { 
+     // get the current value of the input field.
+    const number = parseInt(digitsFaToEn($(this).val()) / 10)
+    $("#lb-prePayment").text(numberToWords(number) + " تومان ")
+});
+
+$('#reminingCost').on('input', function() { 
+  // get the current value of the input field.
+ const number = parseInt(digitsFaToEn($(this).val()) / 10)
+ $("#lb-reminingCost").text(numberToWords(number) + " تومان ")
+});
+
+$('#fee').on('input', function() { 
+  // get the current value of the input field.
+ const number = parseInt(digitsFaToEn($(this).val()) / 10)
+ $("#lb-fee").text(numberToWords(number) + " تومان ")
+});
+
+$('#cost').on('input', function() { 
+  // get the current value of the input field.
+ const number = parseInt(digitsFaToEn($(this).val()) / 10)
+ $("#lb-cost").text(numberToWords(number) + " تومان ")
+});
 });
 
 function initDataList() {
@@ -113,11 +140,19 @@ function updatedReceipt(id) {
 function renderReceipts(receiptItems) {
   $("#table").find("tr:gt(0)").remove();
 
+   // Setup - add a text input to each footer cell
+   $('#table tfoot th').each(function () {
+    var title = $(this).text();
+    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+});
+
   table = $("#table").DataTable({
+    "order": [],
+    pagingType: 'full_numbers',
     dom:
       "<'row'<'col-sm-12 col-md-4 text-black'f><'col-sm-12 col-md-4 mt-1 block text-black border-gray-300'l>>" +
       "<'row'<'col-sm-12'tr>>" +
-      "<'row'<'col m-2'B><'col-sm-12 col-md-auto m-2'p>>",
+      "<'row'<'col m-2'p><'col-sm-12 col-md-auto m-2'B>>",
     columnDefs: [
       {
         targets: -1,
@@ -136,27 +171,23 @@ function renderReceipts(receiptItems) {
       },
     ],
     buttons: [
+      { extend: "excel",
+      className: "mr-1 flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-dark-purple hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" },
+      { extend: "pdf", 
+      className: "mr-1 flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-dark-purple hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" },
+      { extend: "print",
+      className: "mr-1 flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-dark-purple hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" },
       {
         text: "جدید",
-        className: "mr-1 flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-dark-purple hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
+        className: "mr-1 flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-success hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
         action: (e, dt, node, config) => {
           $('#exampleModal').modal('show')
         },
-      },
-      { extend: "excel",
-      className: "mr-1 flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-dark-purple hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" },
-      { extend: "pdf", 
-      className: "mr-1 flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-dark-purple hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" },
-      { extend: "print",
-      className: "mr-1 flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-dark-purple hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" },
+      }
+    
     ],
     scrollY: "100vh",
     scrollCollapse: true,
-    language: {
-      search: "Filter",
-      searchPlaceholder: "",
-    },
-
     data: receipts,
     columns: [
       { data: "receiptNumber" },
@@ -164,32 +195,41 @@ function renderReceipts(receiptItems) {
       { data: "customerPhone" },
       { data: "device" },
       { data: "subject" },
-      { data: "cost" },
-      { data: "fee" },
       { data: "prePayment" },
+      { data: "cost" },
       { data: "remainingPayment" },
+      { data: "fee" },
       { data: "description" },
       { data: "createdAt" },
       { data: null },
-    ],
+    ]
   });
 
   $('#table tbody').on('click', "button[id='btn-delete']", function (e) {
     var data = table.row($(this).parents('tr')).data();
     onDeleteReceipt(data._id)
-});
-
-$('#table tbody').on('click', "button[id='btn-edit']", function (e) {
+  });
+  
+  $('#table tbody').on('click', "button[id='btn-edit']", function (e) {
   var data = table.row($(this).parents('tr')).data();
   updatedReceipt(data._id)
-});
-
-$('#table tbody').on('click', "button[id='btn-print']", function (e) {
+  });
+  
+  $('#table tbody').on('click', "button[id='btn-print']", function (e) {
   var data = table.row($(this).parents('tr')).data();
-  ipcRenderer.send("print", {});
-});
+  ipcRenderer.send("print", JSON.stringify(data));
+  });
 
   // $('.dataTables_length').addClass('bs-select');
+}
+
+
+function validateForm() {
+  let x = document.forms["receipt-form"]["phone"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
 }
 
 function reloadTable(receipts) {
@@ -200,13 +240,13 @@ $("#receipt-form").on("submit", function (event) {
   event.preventDefault();
 
   const customerName = $("#customer").val();
-  const customerPhone = parseInt($("#phone").val());
+  const customerPhone = digitsFaToEn($("#phone").val())
   const device = $("#device-name").val();
   const subject = $("#subject").val();
-  const prePayment = parseInt($("#prePayment").val());
-  const cost = parseInt($("#cost").val());
-  const remainingPayment = parseInt($("#reminingCost").val());
-  const fee = parseInt($("#fee").val());
+  const prePayment = removeCommas(digitsFaToEn($("#prePayment").val())) ;
+  const cost = removeCommas(digitsFaToEn($("#cost").val()));
+  const remainingPayment = removeCommas(digitsFaToEn($("#reminingCost").val()));
+  const fee = removeCommas(digitsFaToEn($("#fee").val()));
   const description = $("#description").val();
 
   const receipt = {
@@ -221,7 +261,7 @@ $("#receipt-form").on("submit", function (event) {
     description,
   };
 
-  console.log(customerPhone);
+  console.log(typeof customerPhone);
   if (!updateStatus) {
     ipcRenderer.send("new-receipt", receipt);
   } else {
@@ -232,8 +272,9 @@ $("#receipt-form").on("submit", function (event) {
 ipcRenderer.on("new-receipt-saved", (e, args) => {
   let receipt = JSON.parse(args);
   receipts.push(receipt);
-  reloadTable(receipt);
+  reloadTable(receipts);
   $("#receipt-form").trigger("reset");
+  $('#exampleModal').modal('hide');
   toastify({
     text: "Receipt Added",
     duration: 3000,
@@ -266,16 +307,18 @@ ipcRenderer.on("update-receipt-success", (e, args) => {
       d.customerPhone = updateReceipt.customerPhone;
       d.device = updateReceipt.device;
       d.subject = updateReceipt.subject;
-      d.cost = updateReceipt.cost;
-      d.fee = updateReceipt.fee;
-      d.prePayment = updateReceipt.prePayment;
-      d.remainingPayment = updateReceipt.remainingPayment;
+      d.cost = digitsEnToFa(addCommas(updateReceipt.cost));
+      d.fee = digitsEnToFa(addCommas(updateReceipt.fee));
+      d.prePayment = digitsEnToFa(addCommas(updateReceipt.prePayment));
+      d.remainingPayment = digitsEnToFa(addCommas(updateReceipt.remainingPayment));
       d.description = updateReceipt.description;
     }
     return d;
   });
 
   reloadTable(receipts);
+  $("#receipt-form").trigger("reset");
+  $('#exampleModal').modal('hide');
   updateStatus = false;
 });
 

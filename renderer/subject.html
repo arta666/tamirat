@@ -11,64 +11,151 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="./plugins/jquery.js"></script>
-    <script src="js/subject.js" defer></script>
-    <title>Subjects</title>
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+  <link rel="stylsheet" href="./css/dataTables.bootstrap.min.css" />
+  <link rel="stylsheet" href="./css/responsive.bootstrap.min.css" />
+  <link rel="stylsheet" href="./css/jquery-confirm.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+    <title>مشکل</title>
   </head>
-  <body class="bg-teal-700">
-    <div class="flex-container">
-    <div class="h-screen flex flex-col" style="flex-grow: 8">
-    <div class="tableFixHead">
-    <table class="styled-table" id="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>TITLE</th>
-                <th>DESCRIPTION</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    </div>
-    </div>
-     <!-- Form -->
-     <div style="flex-grow: 1">
-     <form id="subject-form" >
-      <div class="mt-6">
-        <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Device</label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-          placeholder="Title"
-          autofocus
-        />
-        <textarea 
-        id="description" 
-        rows="5" 
-        cols="60" 
-        name="text" 
-        class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-        placeholder="Description">
-    </textarea>
-      </div>
-      <!-- Button -->
-      <div class="mt-6">
-        <button
-          id="btn-action"
-          type="submit"
-          class="w-80 m-auto flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Insert
-        </button>
+  <body class="bg-purple">
+    <div class="wrapper d-flex align-items-stretch">
+      <!-- Grey with black text -->
+      <nav id="sidebar" class="active">
+        <div class="custom-menu">
+          <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Toggle Menu</span>
+          </button>
+        </div>
+        <div class="p-4">
+          <h1><a id="nav_title" href="#" class="logo"></a></h1>
+          <ul class="list-unstyled components mb-5">
+            <li>
+              <a href="./index.html"><span class="fa fa-home mr-3"></span> خانه</a>
+            </li>
+            <li >
+              <a href="./devices.html"
+                ><span class="fa fa-user mr-3"></span> لیست دستگاه</a
+              >
+            </li>
+            <li class="active">
+              <a href="./subject.html"
+                ><span class="fa fa-briefcase mr-3"></span> لیست مشکل</a
+              >
+            </li>
+            <li>
+              <a href="./setting.html"
+                ><span class="fa fa-sticky-note mr-3"></span> تنظیمات</a
+              >
+            </li>
+          </ul>
 
-    </form>
-  </div>
-</div>
+          <div class="footer">
+            <p>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              <a>Developed by Arman Balash</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Page Content  -->
+      <div id="content" class="container p-4 p-md-5 pt-5">
+        <div class="row">
+        <div class="col-12 col-md-8">
+
+        <div class="table-responsive fixed-table-body m-2">
+          <table
+            id="table"
+            class="table table-bordered bordered table-striped table-condensed datatable nowrap bg-light"
+            cellspacing="0"
+            width="100%"
+          >
+            <thead class="bg-dark-purple text-white text-center">
+              <tr>
+                <th>عنوان</th>
+                <th>توضیحات</th>
+                <th>عملیات</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+        <!-- Form -->
+        <div class="col-12 col-md-4 py-6">
+          <form id="subject-form" >
+            <div class="mt-6">
+              <input
+              dir="rtl"
+                type="text"
+                name="title"
+                id="title"
+                class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+                placeholder="مشکل دستگاه"
+                autofocus
+              />
+              <textarea 
+              dir="rtl"
+              id="description" 
+              rows="5" 
+              cols="60" 
+              name="text" 
+              class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+              placeholder="توضیحات">
+          </textarea>
+            </div>
+            <!-- Button -->
+            <div class="mt-6">
+              <button
+                id="btn-action"
+                type="submit"
+                class="w-80 m-auto flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-dark-purple hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                ذخیره
+              </button>
+      
+          </form>
+        
+      </div>
+      </div>
+      </div>
+    </div>
+
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+
+    <!-- normal script imports etc  -->
+
+    <script src="./plugins/jquery.min.js"></script>
+    <script src="./plugins/jquery-confirm.min.js"></script>
+    <!-- <script src="./js/bootstrap.bundle.min.js"></script> -->
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+
+    <script src="./plugins/jquery.dataTables.min.js"></script>
+    <script src="./plugins/pdfmake.min.js"></script>
+    <script src="./plugins/vfs_fonts.js"></script>
+    <script src="./js/dataTables.bootstrap.min.js"></script>
+    <script src="./js/dataTables.responsive.min.js"></script>
+    <script src="./js/responsive.bootstrap.min.js"></script>
+
+    <script src="./js/subject.js"></script>
+
+    <!-- Insert this line after script imports -->
+    <script>
+      if (window.module) module = window.module;
+    </script>
   </body>
 </html>

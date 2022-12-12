@@ -29,236 +29,277 @@
   </head>
 
   <body class="bg-purple">
-    
-<div class="wrapper d-flex align-items-stretch">
+    <div class="wrapper d-flex align-items-stretch">
+      <!-- Grey with black text -->
+      <nav id="sidebar" class="active">
+        <div class="custom-menu">
+          <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Toggle Menu</span>
+          </button>
+        </div>
+        <div class="p-4">
+          <h1><a id="nav_title" href="#" class="logo"></a></h1>
+          <ul class="list-unstyled components mb-5">
+            <li class="active">
+              <a href="#"><span class="fa fa-home mr-3"></span> خانه</a>
+            </li>
+            <li>
+              <a href="./devices.html"
+                ><span class="fa fa-user mr-3"></span> لیست دستگاه</a
+              >
+            </li>
+            <li>
+              <a href="./subject.html"
+                ><span class="fa fa-briefcase mr-3"></span> لیست مشکل</a
+              >
+            </li>
+            <li>
+              <a href="./setting.html">
+                <span class="fa fa-sticky-note mr-3"></span> تنظیمات</a
+              >
+            </li>
+          </ul>
 
-<!-- Grey with black text -->
-<nav id="sidebar" class="active">
-  <div class="custom-menu">
-    <button type="button" id="sidebarCollapse" class="btn btn-primary">
-      <i class="fa fa-bars"></i>
-      <span class="sr-only">Toggle Menu</span>
-    </button>
-  </div>
-  <div class="p-4">
-    <h1><a href="index.html" class="logo">بابا حبیب</a></h1>
-    <ul class="list-unstyled components mb-5">
-      <li class="active">
-        <a href="#"><span class="fa fa-home mr-3"></span> خانه</a>
-      </li>
-      <li>
-          <a href="./devices.html"><span class="fa fa-user mr-3"></span> لیست دستگاه</a>
-      </li>
-      <li>
-        <a href="./subject.html"><span class="fa fa-briefcase mr-3"></span> لیست مشکل</a>
-      </li>
-      <li>
-        <a href="#"><span class="fa fa-sticky-note mr-3"></span> تنظیمات</a>
-      </li>
-      <li>
-        <a href="#"><span class="fa fa-paper-plane mr-3"></span> Contact</a>
-      </li>
-    </ul>
+          <div class="footer">
+            <p>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              <a>Developed by Arman Balash</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
+        </div>
+      </nav>
 
-    <div class="footer">
-      <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        <a>Developed by Arman Balash</a>
-        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-    </div>
-
-  </div>
-</nav>
-
- <!-- Page Content  -->
- <div id="content" class="p-4 p-md-5 pt-5">
-  <div class="table-responsive fixed-table-body m-2">
-    <table
-      id="table"
-      class="table table-bordered bordered table-striped table-condensed datatable nowrap bg-light"
-      cellspacing="0"
-      width="100%"
-    >
-      <thead class="bg-dark-purple text-white text-center">
-        <tr>
-          <th>#</th>
-          <th>نام</th>
-          <th>تلفن</th>
-          <th>دستگاه</th>
-          <th>مشکل</th>
-          <th>پیش پرداخت</th>
-          <th>هزینه</th>
-          <th>دستمزد شرکتی</th>
-          <th>مانده حساب</th>
-          <th>توضیحات</th>
-          <th>تاریخ</th>
-          <th>عملیات</th>
-
-        </tr>
-      </thead>
-    </table>
-    <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button> -->
-
-    <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" >
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="container-fluid py-3">
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="myform bg-dark">
-    <!-- Form -->
-    <div class="row">
-      <div class="col-md-10 mx-auto">
-    <form  dir="rtl" id="receipt-form">
-
-      <div class="form-group row">
-        <div class="col-sm-6">
-          <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">جناب آقای / خانم</label>
-          <input
-            dir="rtl"
-            type="text"
-            name="customer"
-            id="customer"
-            class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-            placeholder="نام مشتری را وارد کنید"
-            required
-            autofocus/>
+      <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <div class="table-responsive fixed-table-body m-2">
+          <table
+            id="table"
+            class="table table-bordered bordered table-striped table-condensed datatable nowrap bg-light"
+            cellspacing="0"
+            width="100%"
+          >
+            <thead class="bg-dark-purple text-white text-center">
+              <tr>
+                <th>#</th>
+                <th>نام</th>
+                <th>تلفن</th>
+                <th>دستگاه</th>
+                <th>مشکل</th>
+                <th>پیش پرداخت (ریال)</th>
+                <th>هزینه (ریال)</th>
+                <th>مانده حساب (ریال)</th>
+                <th> دستمزد شرکتی (ریال)</th>
+                <th>توضیحات</th>
+                <th>تاریخ</th>
+                <th>عملیات</th>
+              </tr>
+            </thead>
+          </table>
         </div>
 
-        <div class="col-sm-6">
-          <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">شماره همراه</label>
-          <input
-          dir="rtl"
-          type="tel"
-          name="phone"
-          id="phone"
-          class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-          placeholder="مثال : ۰۹۱۲۱۸۱۸۵۶۸"
-          required/>
-        </div>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="container-fluid py-3">
+                    <button
+                      type="button"
+                      class="btn-close btn-close-white"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                    <div class="myform bg-dark">
+                      <!-- Form -->
+                      <div class="row">
+                        <div class="col-md-10 mx-auto p-3">
+                          <form dir="rtl" id="receipt-form">
+                            <div class="form-group row">
+                              <div class="col-sm-6">
+                                <label
+                                  class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md"
+                                  >جناب آقای / خانم</label
+                                >
+                                <input
+                                  dir="rtl"
+                                  type="text"
+                                  name="customer"
+                                  id="customer"
+                                  class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+                                  placeholder="نام مشتری را وارد کنید"
+                                  required
+                                  autofocus
+                                />
+                              </div>
 
+                              <div class="col-sm-6">
+                                <label
+                                  class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md"
+                                  >شماره همراه</label
+                                >
+                                <input
+                                  dir="rtl"
+                                  type="tel"
+                                  name="phone"
+                                  id="phone"
+                                  class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+                                  placeholder="مثال : ۰۹۱۲۱۸۱۸۵۶۸"
+                                  required
+                                />
+                              </div>
+                            </div>
+
+                            <div class="form-group row">
+                              <div class="col-sm-6">
+                                <label
+                                  class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md"
+                                  >دستگاه</label
+                                >
+                                <input
+                                  id="device-name"
+                                  name="device-name"
+                                  dir="rtl"
+                                  class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+                                  list="deviceOptions"
+                                  placeholder="نام دستگاه را وارد کنید"
+                                  required
+                                />
+                                <datalist
+                                  dir="rtl"
+                                  id="deviceOptions"
+                                ></datalist>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label
+                                  class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">مشکل</label
+                                >
+                                <input
+                                  id="subject"
+                                  name="subject"
+                                  dir="rtl"
+                                  class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+                                  list="subjectOptions"
+                                  placeholder="مشکل دستگاه را وارد کنید"
+                                  required
+                                />
+                                <datalist
+                                  dir="rtl"
+                                  id="subjectOptions"
+                                ></datalist>
+                              </div>
+                            </div>
+
+                            <div class="form-group row">
+                              <div class="col-sm-6">
+                                <label
+                                  class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md"
+                                  >پیش پرداخت</label>
+                                
+                                <input
+                                  dir="rtl"
+                                  type="text"
+                                  onkeypress="return (event.charCode !=1776 && event.charCode ==0 || (event.charCode >= 1776 && event.charCode <= 1785))"
+                                  name="prePayment"
+                                  id="prePayment"
+                                  class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+                                  required
+                                  placeholder="پیش پرداخت"
+                                />
+                                <label id="lb-prePayment" class="mt-1 block text-white text-right w-80 m-auto py-2 shadow-sm border-gray-300 rounded-md">صفر</label>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label
+                                  class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md"
+                                  >هزینه</label
+                                >
+                                <input
+                                  dir="rtl"
+                                  type="text"
+                                  onkeypress="return (event.charCode !=1776 && event.charCode ==0 || (event.charCode >= 1776 && event.charCode <= 1785))"
+                                  name="cost"
+                                  id="cost"
+                                  class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+                                  placeholder="هزینه"
+                                  required
+                                />
+                                <label id="lb-cost" class="mt-1 block text-white text-right w-80 m-auto py-2 shadow-sm border-gray-300 rounded-md">صفر</label>
+                              </div>
+                            </div>
+
+                            <div class="form-group row">
+                              <div class="col-sm-6">
+                                <label
+                                  class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md"
+                                  >دستمزد شرکتی</label
+                                >
+                                <input
+                                  dir="rtl"
+                                  type="text"
+                                  onkeypress="return (event.charCode !=1776 && event.charCode ==0 || (event.charCode >= 1776 && event.charCode <= 1785))"
+                                  name="fee"
+                                  id="fee"
+                                  class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+                                  placeholder="دستمزد شرکتی"
+                                  required
+                                />
+                                <label id="lb-fee" class="mt-1 block text-white text-right w-80 m-auto py-2 shadow-sm border-gray-300 rounded-md">صفر</label>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label
+                                  class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md"
+                                  >مانده حساب</label
+                                >
+                                <input
+                                  dir="rtl"
+                                  type="text"
+                                  onkeypress="return (event.charCode !=1776 && event.charCode ==0 || (event.charCode >= 1776 && event.charCode <= 1785))"
+                                  name="reminingCost"
+                                  id="reminingCost"
+                                  class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
+                                  placeholder="مانده حساب"
+                                  required
+                                />
+                                <label id="lb-reminingCost" class="mt-1 block text-white text-right w-80 m-auto py-2 shadow-sm border-gray-300 rounded-md">صفر</label>
+                              </div>
+                            </div>
+                            <textarea
+                              dir="rtl"
+                              id="description"
+                              rows="5"
+                              cols="60"
+                              name="text"
+                              class="mt-1 block m-auto p-3 shadow-sm border-gray-300 rounded-md"
+                              placeholder="توضیحات"
+                            ></textarea>
+                            <div class="mt-6">
+                              <button
+                                type="submit"
+                                class="w-80 m-auto flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-success hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                              >
+                                ذخیره
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+       
       </div>
-
-      <div class="form-group row">
-
-        <div class="col-sm-6">
-          <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">دستگاه</label>
-          <input
-              id="device-name"
-              name="device-name"
-              dir="rtl"
-              class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-              list="deviceOptions"
-              placeholder="نام دستگاه را وارد کنید"
-              required
-            />
-            <datalist dir="rtl" id="deviceOptions"></datalist>
-        </div>
-
-        
-        <div class="col-sm-6">
-          <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">مشکل</label>
-          <input
-          id="subject"
-          name="subject"
-          dir="rtl"
-          class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-          list="subjectOptions"
-          placeholder="مشکل دستگاه را وارد کنید"
-          required
-        />
-        <datalist dir="rtl" id="subjectOptions"></datalist>
-        </div>
-      </div>
-
-        <div class="form-group row">
-          <div class="col-sm-6">
-            <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">پیش پرداخت</label>
-            <input
-            dir="rtl"
-            type="number"
-            name="prePayment"
-            id="prePayment"
-            class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-            required
-            placeholder="پیش پرداخت"
-          />
-          </div>
-
-          <div class="col-sm-6">
-            <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">هزینه</label>
-            <input
-              dir="rtl"
-              type="number"
-              name="cost"
-              id="cost"
-              class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-              placeholder="هزینه"
-              required
-            />
-          </div>
-
-        </div>
-
-        <div class="form-group row">
-          <div class="col-sm-6">
-            <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">دستمزد شرکتی</label>
-            <input
-              dir="rtl"
-              type="number"
-              name="fee"
-              id="fee"
-              class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-              placeholder="دستمزد شرکتی"
-              required
-            />
-          </div>
-
-          <div class="col-sm-6">
-            <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">مانده حساب</label>
-            <input
-              dir="rtl"
-              type="number"
-              name="reminingCost"
-              id="reminingCost"
-              class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-              placeholder="مانده حساب"
-              required
-            />
-          </div>
-
-        </div>
-        <textarea
-        dir="rtl"
-        id="description"
-        rows="5"
-        cols="60"
-        name="text"
-        class="mt-1 block m-auto p-3 shadow-sm border-gray-300 rounded-md"
-        placeholder="توضیحات"
-      ></textarea>
-      <div class="mt-6">
-        <button
-          type="submit"
-          class="w-80 m-auto flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          ذخیره
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-  </div>
-</div>
     </div>
 
     <script>
@@ -282,7 +323,7 @@
     <script src="./js/dataTables.bootstrap.min.js"></script>
     <script src="./js/dataTables.responsive.min.js"></script>
     <script src="./js/responsive.bootstrap.min.js"></script>
-   
+
     <script src="./js/script.js"></script>
 
     <!-- Insert this line after script imports -->

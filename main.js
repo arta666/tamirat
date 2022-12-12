@@ -5,6 +5,9 @@ const { app, BrowserWindow, Menu, ipcMain, webContents } = require("electron");
 require("@electron/remote/main").initialize();
 const mainRemote = require("@electron/remote/main");
 
+const Store = require("electron-store");
+Store.initRenderer();
+const store = new Store();
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -192,24 +195,29 @@ app.on("window-all-closed", () => {
 });
 
 function showMainWindow() {
-    mainWindow.loadFile(path.join(__dirname, "./renderer/index.html"))
-        .then(() => { window.show(); })
+  mainWindow
+    .loadFile(path.join(__dirname, "./renderer/index.html"))
+    .then(() => {
+      window.show();
+    });
 }
 
 function showLoginWindow() {
-    // window.loadURL('https://www.your-site.com/login')
-    mainWindow.loadFile(path.join(__dirname, "./renderer/setting.html"))
-        .then(() => { window.show(); })
+  // window.loadURL('https://www.your-site.com/login')
+  mainWindow
+    .loadFile(path.join(__dirname, "./renderer/setting.html"))
+    .then(() => {
+      window.show();
+    });
 }
 
-ipcMain.on('show-main',(e,args)=> {
-    showMainWindow()
-})
+ipcMain.on("show-main", (e, args) => {
+  showMainWindow();
+});
 
-ipcMain.on('show-preview',(e,args)=> {
-    showLoginWindow()
-})
-
+ipcMain.on("show-preview", (e, args) => {
+  showLoginWindow();
+});
 
 // Receipt
 
@@ -266,7 +274,7 @@ var options = {
 ipcMain.on("print", function (event, args) {
   // let win = BrowserWindow.getAllWindows()[0];
   printerWindow = new BrowserWindow({
-    show: false,
+    show: true,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -278,9 +286,9 @@ ipcMain.on("print", function (event, args) {
 
   printerWindow.webContents.openDevTools();
 
-  printerWindow.once("ready-to-show", () => printerWindow.hide());
+  // printerWindow.once("ready-to-show", () => printerWindow.hide());
 
-  printerWindow.on("close", () => printerWindow = null);
+  printerWindow.on("close", () => (printerWindow = null));
 
   printerWindow.webContents.on("did-finish-load", async () => {
     if (printerWindow === null) return;
@@ -288,22 +296,64 @@ ipcMain.on("print", function (event, args) {
     console.log("Did Finish Load");
 
     console.log("Start Creating PDF");
-    let data = { title: "Jack And Dani" };
-    printerWindow.webContents.send("message", JSON.stringify(data));
-    
+    // let data = { title: "Jack And Dani" };
+    printerWindow.webContents.send("message", args);
   });
 });
 
 ipcMain.on("start-printing", async (event, args) => {
-    const pdf = await event.sender.printToPDF(options);
-    await createPDFFrom(pdf);
-    printerWindow.close()
-    printerWindow = null
-})
+  const printer = store.get("printer") || 0;
 
+  switch (printer) {
+    case 1:
+      console.log("Start printing windows");
+      return;
+    case 2:
+      printMethodTwo(event);
+      return;
+    case 3:
+      printMethodThree(event);
+      return;
+    default:
+      break;
+  }
+});
+
+async function printMethodThree(event) {
+  const pdf = await event.sender.printToPDF(options);
+  await createPDFFrom(pdf);
+  printerWindow.close();
+  printerWindow = null;
+}
+
+async function printMethodTwo(event) {
+  try {
+    let printersInfo = await event.sender.getPrintersAsync();
+    let printer = printersInfo.filter(
+      (printer) => printer.isDefault === true
+    )[0];
+    console.log("printer ", printer);
+
+    if (printer === undefined) {
+      return;
+    }
+    options.deviceName = printer.name;
+    await event.sender.print(options);
+    event.returnValue = true;
+  } catch (error) {
+    console.log(error);
+  }
+
+  // let printer = printersInfo.filter(printer => printer.isDefault === true)[0];
+
+  // const pdf = await event.sender.printToPDF(options);
+  //   await createPDFFrom(pdf);
+  //   printerWindow.close()
+  //   printerWindow = null
+}
 
 async function createPDFFrom(data) {
-  var filepath1 = path.join("/Users/armanbalash/Desktop/", "print1.pdf");
+  var filepath1 = path.join(__dirname, "./temp/cache.pdf");
   if (data !== undefined || data !== null) {
     console.log("Start Write To File");
     fs.writeFile(filepath1, data, (err) => {
